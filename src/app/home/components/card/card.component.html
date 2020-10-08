@@ -1,5 +1,5 @@
-<div>
-    *imagen de fondo*
+<div [ngStyle]="{ 'background-image': 'url(' + experience.image + ')' }">
     <h3>{{experience.description}}</h3>
     <h4>{{experience.place}}</h4>
 </div>
+<br>

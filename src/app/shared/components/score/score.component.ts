@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-score',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./score.component.scss']
 })
 export class ScoreComponent implements OnInit {
+
+  @Input() score: number;
+
+  public spaces: Array<number> = [1, 2, 3, 4, 5];
 
   constructor() { }
 
