@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { IExperience } from 'src/app/shared/models/experience.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ExperienceService {
+
+  private urlAPI: string = 'https://bankairbnbapp.herokuapp.com';
 
   public experiences: Array < IExperience > = [{
     id: 1,
@@ -47,5 +50,9 @@ export class ExperienceService {
 
   public getExperiences(): Array<IExperience> {
     return this.experiences;
+  }
+
+  public getExperienceById( id: number): IExperience {
+    return this.experiences.find( item => item.id === id);
   }
 }

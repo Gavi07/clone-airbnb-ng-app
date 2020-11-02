@@ -6,6 +6,8 @@ import { CardComponent } from './components/card/card.component';
 import { SharedModule } from '../shared/shared.module';
 import { ExpListComponent } from './components/exp-list/exp-list.component';
 import { ExpCardComponent } from './components/exp-card/exp-card.component';
+import { RouterModule } from '@angular/router';
+import { HomeRoutingModule } from './home-routing.module';
 
 
 
@@ -19,7 +21,9 @@ import { ExpCardComponent } from './components/exp-card/exp-card.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
+    HomeRoutingModule
   ]
 })
 export class HomeModule { }

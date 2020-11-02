@@ -1,6 +1,8 @@
-<div>
+<div class="exp-card">
     <img [src]="item.image" width="200" alt="img"/>
-    <h3>{{item.description}}</h3>
-    <h4>{{item.place}}</h4>
-    <app-score [score]="item.score"></app-score>
+    <div>
+        <h3>{{item.description}}</h3>
+        <h4>{{item.place}}</h4>
+        <app-score [score]="item.score"></app-score>
+    </div>
 </div>

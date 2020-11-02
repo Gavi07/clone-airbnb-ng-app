@@ -1,0 +1,11 @@
+<section>
+    <form [formGroup]="formGroup" class="form">
+        <div class="control-form">
+            <label>Fecha</label>
+            <input formControlName="date" type="date">
+        </div>
+        <span class="error">{{getError('date')}}</span>
+        <br><br>
+        <button (click)="reservation()" [disabled]="formGroup.invalid">Reservar</button>
+    </form>
+</section>

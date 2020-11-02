@@ -1,18 +1,12 @@
 import { Routes } from '@angular/router';
-import { DetailComponent } from './detail/components/detail/detail.component';
-import { HomeComponent } from './home/home.component';
-import { BookingComponent } from './booking/components/booking/booking.component';
-import { SigninComponent } from './signin/components/signin/signin.component';
-import { SignupComponent } from './signup/components/signup/signup.component';
-import { Page404Component } from './error-page/components/page404/page404.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
-    { path: 'home', component: HomeComponent },
-    { path: 'detail', component: DetailComponent },
-    { path: '404', component: Page404Component},
-    { path: '**', component: Page404Component}
-    // { path: 'booking', component: BookingComponent },
-    // { path: 'signin', component: SigninComponent },
-    // { path: 'signup', component: SignupComponent },
+    { path: 'home', loadChildren: () => import('./home/home.module').then( mod => mod.HomeModule) },
+    { path: 'detail/:id', loadChildren: () => import('./detail/detail.module').then( mod => mod.DetailModule) },
+    { path: 'signup', loadChildren: () => import('./signup/signup.module').then( mod => mod.SignupModule) },
+    { path: 'signin', loadChildren: () => import('./signin/signin.module').then( mod => mod.SigninModule) },
+    { path: 'booking', loadChildren: () => import('./booking/booking.module').then( mod => mod.BookingModule) },
+    { path: '404', loadChildren: () => import('./error-page/error-page.module').then( mod => mod.ErrorPageModule) },
+    { path: '**', redirectTo: '/404'}
 ];

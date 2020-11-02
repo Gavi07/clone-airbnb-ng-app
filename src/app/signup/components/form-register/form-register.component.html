@@ -1,0 +1,24 @@
+<section>
+    <form [formGroup]="formGroup" class="form">
+        <div class="control-form">
+            <label>Nombre:</label>
+            <input formControlName="name" type="text">
+        </div>
+        <div class="control-form">
+            <label>Teléfono</label>
+            <input formControlName="phone" type="number">
+        </div>
+        <div class="control-form">
+            <label>Correo electrónico</label>
+            <input placeholder="@" formControlName="email" type="email">
+        </div>
+        <span class="error">{{getError('email')}}</span>
+        <div class="control-form">
+            <label>Contraseña</label>
+            <input formControlName="password" type="password">
+        </div>
+        <span class="error">{{getError('password')}}</span>
+        <br><br>
+        <button (click)="register()" [disabled]="formGroup.invalid">Registrame</button>
+    </form>
+</section>

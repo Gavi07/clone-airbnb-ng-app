@@ -1,0 +1,9 @@
+@import '../../../../styles/variables.scss';
+
+.score {
+    margin: 5px 15px;
+    div {
+        color: $babu-color;
+        float: left;
+    }
+}
