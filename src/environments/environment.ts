@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  rest: 'url'
+  urlBase: 'https://bankairbnbapp.herokuapp.com'
 };
 
 /*

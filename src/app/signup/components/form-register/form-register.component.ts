@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users/users.service';
+import { IUser } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-form-register',
@@ -9,8 +12,9 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 export class FormRegisterComponent implements OnInit {
 
   public formGroup: FormGroup;
+  public user: IUser;
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor( private formBuilder: FormBuilder, private userService: UsersService, private router: Router ) { }
 
   ngOnInit() {
     this.formInit();
@@ -20,14 +24,20 @@ export class FormRegisterComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       name: ['', Validators.required],
       phone: ['', Validators.required],
+      identification: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.maxLength(16) , this.validatePassword]]
     });
   }
 
   public register() {
-    const data = this.formGroup.value;
-    console.log('data register: ', data);
+    this.user = this.formGroup.value;
+    this.userService.signup(this.user).subscribe( data => {
+      console.log(data);
+      if (data.status === 1) {
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
   private validatePassword( control: AbstractControl ) {

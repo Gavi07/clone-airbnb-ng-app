@@ -1,10 +1,18 @@
 <section>
     <form [formGroup]="formGroup" class="form">
         <div class="control-form">
-            <label>Fecha</label>
-            <input formControlName="date" type="date">
+            <label>Fecha de llegada</label>
+            <input formControlName="date_start" type="date">
         </div>
-        <span class="error">{{getError('date')}}</span>
+        <span class="error">{{getError('date_start')}}</span>
+        <div class="control-form">
+            <label>Fecha de salida</label>
+            <input formControlName="date_exit" type="date">
+        </div>
+        <span class="error">{{getError('date_exit')}}</span>
+        <span class="error" *ngIf="formGroup.hasError('notValid')">La fecha de inicio no puede ser mayor a la fecha de salida.</span>
+
+        
         <br><br>
         <button (click)="reservation()" [disabled]="formGroup.invalid">Reservar</button>
     </form>

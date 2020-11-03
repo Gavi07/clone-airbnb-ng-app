@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users/users.service';
+import { IUser } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-form-login',
@@ -9,8 +12,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormLoginComponent implements OnInit {
 
   public formGroup: FormGroup;
+  public user: IUser;
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor( private formBuilder: FormBuilder, private userService: UsersService, private router: Router) { }
 
   ngOnInit() {
     this.formInit();
@@ -24,8 +28,13 @@ export class FormLoginComponent implements OnInit {
   }
 
   login() {
-    const data = this.formGroup.value;
-    console.log(data);
+    this.user = this.formGroup.value;
+    this.userService.login(this.user).subscribe( data => {
+      console.log(data);
+      if (data.status === 1) {
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
 }

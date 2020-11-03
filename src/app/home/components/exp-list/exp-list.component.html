@@ -1,3 +1,5 @@
 <section *ngFor="let item of list">
-    <app-exp-card [item]="item"></app-exp-card>
+    <a [routerLink]="['/detail/' + item._id]">
+        <app-exp-card [item]="item"></app-exp-card>
+    </a>
 </section>

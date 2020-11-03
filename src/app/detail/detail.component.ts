@@ -11,18 +11,18 @@ import { IExperience } from '../shared/models/experience.model';
 export class DetailComponent implements OnInit {
 
   public experience: IExperience;
+  public id: string;
 
   constructor( private route: ActivatedRoute, private experienceService: ExperienceService) { }
 
   ngOnInit() {
-    this.getParams();
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getExperienceById();
   }
 
-  private getParams() {
-    this.route.params.subscribe( params => {
-      const id = Number( params.id );
-      console.log('id: ', id);
-      this.experience = this.experienceService.getExperienceById(id);
+  private getExperienceById() {
+    this.experienceService.getExperienceById(this.id).subscribe( data => {
+      this.experience = data.experience;
     });
   }
 

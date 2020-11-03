@@ -4,10 +4,17 @@
             <label>Nombre:</label>
             <input formControlName="name" type="text">
         </div>
+        <span class="error">{{getError('name')}}</span>
         <div class="control-form">
             <label>Teléfono</label>
             <input formControlName="phone" type="number">
         </div>
+        <span class="error">{{getError('phone')}}</span>
+        <div class="control-form">
+            <label>Identificación</label>
+            <input formControlName="identification" type="number">
+        </div>
+        <span class="error">{{getError('identification')}}</span>
         <div class="control-form">
             <label>Correo electrónico</label>
             <input placeholder="@" formControlName="email" type="email">

@@ -1,6 +1,6 @@
 <div [ngClass]="'ranking'">
     <section *ngFor="let experience of experiences">
-        <a [routerLink]="['/detail/' + experience.id]">
+        <a [routerLink]="['/detail/' + experience._id]">
             <app-card [experience]="experience"></app-card>
         </a>
     </section>

@@ -18,8 +18,9 @@ export class FormReservationComponent implements OnInit {
 
   private formInit() {
     this.formGroup = this.formBuilder.group({
-      date: ['', [Validators.required, this.validateDate]]
-    });
+      date_start: ['', [Validators.required, this.validateDate]],
+      date_exit: ['', [Validators.required, this.validateDate]]
+    }, {validator: this.validateDateExit});
   }
 
   public reservation() {
@@ -39,6 +40,13 @@ export class FormReservationComponent implements OnInit {
     return null;
   }
 
+  private validateDateExit( form: FormGroup ) {
+    if (form.controls.date_start.value > form.controls.date_exit.value) {
+      return { notValid: true };
+    }
+    return null;
+  }
+
   public getError( controlName: string ): string {
     let error = '';
     const control = this.formGroup.get(controlName);
@@ -54,10 +62,9 @@ export class FormReservationComponent implements OnInit {
       errorsMessage += 'Campo obligatorio. ';
     }
     if (errors.dateInvalid) {
-      errorsMessage += 'Ingresar correctamente la fecha';
+      errorsMessage += 'Formato de fecha erroneo. ';
     }
     return errorsMessage;
   }
-
 
 }

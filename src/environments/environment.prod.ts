@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  rest: 'url'
+  urlBase: 'https://bankairbnbapp.herokuapp.com'
 };

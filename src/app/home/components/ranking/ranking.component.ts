@@ -14,7 +14,13 @@ export class RankingComponent implements OnInit {
   constructor( private experienceService: ExperienceService ) {}
 
   ngOnInit() {
-    this.experiences = this.experienceService.getExperiences();
+    this.getTop5();
+  }
+
+  private getTop5() {
+    this.experienceService.getTop5().subscribe( data => {
+      this.experiences = data.top5;
+    });
   }
 
 }
