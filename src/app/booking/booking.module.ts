@@ -4,6 +4,7 @@ import { BookingComponent } from './booking.component';
 import { FormReservationComponent } from './components/form-reservation/form-reservation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookingRoutingModule } from './booking-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { BookingRoutingModule } from './booking-routing.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
     BookingRoutingModule
   ]
 })

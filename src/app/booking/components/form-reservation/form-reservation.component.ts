@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BookingService } from 'src/app/services/booking/booking.service';
+import { IReservation } from 'src/app/shared/models/reservation.model';
 
 @Component({
   selector: 'app-form-reservation',
@@ -9,21 +12,48 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 export class FormReservationComponent implements OnInit {
 
   public formGroup: FormGroup;
+  public id: string;
+  public iReservation: IReservation;
+  public response: boolean;
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor( private formBuilder: FormBuilder, private route: ActivatedRoute,
+               private bookingService: BookingService, private router: Router ) { }
 
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.response = false;
     this.formInit();
   }
 
   private formInit() {
     this.formGroup = this.formBuilder.group({
       date_start: ['', [Validators.required, this.validateDate]],
-      date_exit: ['', [Validators.required, this.validateDate]]
+      date_exit: ['', [Validators.required, this.validateDate]],
+      comments: ['', Validators.required]
     }, {validator: this.validateDateExit});
   }
 
   public reservation() {
+    console.log('Llego');
+    this.iReservation = {
+      booking_date_start: this.formGroup.controls.date_start.value,
+      booking_date_end: this.formGroup.controls.date_exit.value,
+      experience_id: this.id,
+      comments: this.formGroup.controls.comments.value
+    };
+    console.log(this.iReservation);
+
+    this.bookingService.reservation(this.iReservation).subscribe( data => {
+      if (data.status === 1) {
+        this.response = true;
+        console.log(data);
+        setTimeout (() => {
+          this.router.navigate(['/home']);
+       }, 5000);
+      } else {
+        this.response = false;
+      }
+    });
   }
 
   private validateDate( control: AbstractControl ) {

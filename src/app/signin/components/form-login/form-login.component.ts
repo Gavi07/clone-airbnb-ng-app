@@ -32,6 +32,7 @@ export class FormLoginComponent implements OnInit {
     this.userService.login(this.user).subscribe( data => {
       console.log(data);
       if (data.status === 1) {
+        localStorage.setItem('token', data.token);
         this.router.navigate(['/home']);
       }
     });

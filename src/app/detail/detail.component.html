@@ -1,3 +1,4 @@
 <app-title [label]="experience?.title"></app-title>
 <app-card [experience]="experience"></app-card>
-<button>Reserva</button>
+<br>
+<button [routerLink]="['/booking/' + experience?._id]">Reservar</button>
