@@ -10,6 +10,8 @@
         </div>
 
         <button (click)="login()" [disabled]="formGroup.invalid">Iniciar Sesión</button>
+        <br> <br>
+        <span class="error" *ngIf="response">Datos ingresados invalidos.</span>
     </form>
     
 </section>

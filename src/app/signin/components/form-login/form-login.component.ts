@@ -13,10 +13,12 @@ export class FormLoginComponent implements OnInit {
 
   public formGroup: FormGroup;
   public user: IUser;
+  public response: boolean;
 
   constructor( private formBuilder: FormBuilder, private userService: UsersService, private router: Router) { }
 
   ngOnInit() {
+    this.response = false;
     this.formInit();
   }
 
@@ -30,10 +32,14 @@ export class FormLoginComponent implements OnInit {
   login() {
     this.user = this.formGroup.value;
     this.userService.login(this.user).subscribe( data => {
+      console.log(this.user);
       console.log(data);
       if (data.status === 1) {
         localStorage.setItem('token', data.token);
+        this.response = false;
         this.router.navigate(['/home']);
+      } else {
+        this.response = true;
       }
     });
   }

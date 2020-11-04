@@ -30,7 +30,7 @@ export class FormReservationComponent implements OnInit {
       date_start: ['', [Validators.required, this.validateDate]],
       date_exit: ['', [Validators.required, this.validateDate]],
       comments: ['', Validators.required]
-    }, {validator: this.validateDateExit});
+    }, {validator: this.validateDates});
   }
 
   public reservation() {
@@ -70,7 +70,7 @@ export class FormReservationComponent implements OnInit {
     return null;
   }
 
-  private validateDateExit( form: FormGroup ) {
+  private validateDates( form: FormGroup ) {
     if (form.controls.date_start.value > form.controls.date_exit.value) {
       return { notValid: true };
     }

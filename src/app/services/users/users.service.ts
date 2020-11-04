@@ -12,6 +12,13 @@ export class UsersService {
 
   constructor( private httpClient: HttpClient ) { }
 
+  private isLogged = false;
+
+  public isLoggedUser(): boolean {
+    this.isLogged = localStorage.getItem('token') ? true : false;
+    return this.isLogged;
+  }
+
   private handlerError(error: HttpErrorResponse) {
     console.error(`Http error: ${error}`);
     return throwError(`Error calling api ${error.message}`);

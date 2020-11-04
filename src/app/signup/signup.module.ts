@@ -4,12 +4,14 @@ import { SignupComponent } from './signup.component';
 import { FormRegisterComponent } from './components/form-register/form-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupRoutingModule } from './signup-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [SignupComponent, FormRegisterComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
     SignupRoutingModule
   ]
 })

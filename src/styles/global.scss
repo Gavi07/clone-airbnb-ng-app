@@ -44,5 +44,28 @@ body {
     }
 }
 
+button {
+    width: 90%;
+    margin: 15px 5%;
+    padding: 5px 0;
+    border-color: #cccccc;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: #00A699;
+    color: #fff;
+    font-size: 1.1em;
+    opacity: 0.9;
+    outline: none;
+}
+  
+button:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+  
+button:disabled {
+    background-color: #ccc;
+}
+
 
 
